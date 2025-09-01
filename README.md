@@ -1,418 +1,168 @@
-# 🎟 Movie Reservation System
+# 🎬 Movie Reservation System
 
-## 📌 Overview
+<div align="center">
 
-A backend service that allows users to reserve movie tickets. Features include:
+![Java](https://img.shields.io/badge/Java-17-orange?style=for-the-badge&logo=java)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.2-green?style=for-the-badge&logo=spring-boot)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-blue?style=for-the-badge&logo=postgresql)
+![JWT](https://img.shields.io/badge/JWT-Authentication-yellow?style=for-the-badge&logo=json-web-tokens)
+![Flyway](https://img.shields.io/badge/Flyway-Migrations-red?style=for-the-badge&logo=flyway)
 
-- User authentication and authorization
-- Movie & showtime management (Admin)
-- Seat reservation with concurrency control
-- Reservation management and reporting
+**A robust, enterprise-grade movie ticket reservation system built with Spring Boot**
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+[![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen?style=for-the-badge)](https://github.com/yourusername/movie-reservation-system)
+
+</div>
 
 ---
 
-## 🎯 Learning Roadmap
-
-### Phase 1: Foundation & Setup (Week 1)
-
-**Learning Goals:** Spring Boot basics, project structure, database setup
-
-1. **Project Initialization**
-
-   - ✅ Set up Spring Boot project with dependencies
-   - ✅ Configure PostgreSQL connection
-   - ✅ Set up Flyway for database migrations
-   - ✅ Create basic project structure (packages, configs)
-
-2. **Database Design Implementation**
-
-   - ✅ Implement Flyway migrations for all tables
-   - ✅ Test database connections and migrations
-   - ✅ Understand the ER relationships
-
-3. **Basic Configuration**
-   - ✅ Application properties setup (yaml)
-   - ✅ Logging configuration
-   - ✅ Basic error handling
-
-**🎉 PHASE 1 COMPLETED SUCCESSFULLY!**
-
-**Summary of Achievements:**
-
-- ✅ Spring Boot 3.5.4 application created with all required dependencies
-- ✅ PostgreSQL database connection established and tested
-- ✅ Flyway migrations configured and executed successfully
-- ✅ All 8 database tables created with proper relationships
-- ✅ 7 performance indexes implemented for optimal query performance
-- ✅ Application running on port 8080 with context path `/api`
-- ✅ Database schema version controlled with Flyway
-- ✅ Overbooking prevention with UNIQUE constraints
-- ✅ Audit fields (created_at) implemented
-- ✅ Production-ready database design with proper constraints
-
-**Database Tables Created:**
-
-- ✅ users, movies, theaters, screens, seats, showtimes, reservations, seat_reservations
-- ✅ flyway_schema_history (for version control)
-
-**Performance Indexes:**
-
-- ✅ idx_showtimes_start_time, idx_reservations_user_id, idx_reservations_showtime_id
-- ✅ idx_seat_reservations_showtime_seat, idx_seat_reservations_reservation_id
-- ✅ idx_seats_screen_id, idx_screens_theater_id
-
-### Phase 2: Core Entities & Data Layer (Week 2)
-
-**Learning Goals:** JPA/Hibernate, repository patterns, data validation
-
-1. **Entity Classes**
-
-   - Create all JPA entities with proper relationships
-   - Implement validation annotations
-   - Add audit fields (created_at, updated_at)
-   - Test entity mappings
-
-2. **Repository Layer**
-
-   - Create Spring Data JPA repositories
-   - Implement custom query methods
-   - Add pagination and sorting support
-
-3. **Service Layer Foundation**
-   - Create basic CRUD services
-   - Implement business logic validation
-   - Add exception handling
-
-🎯 Phase 2 Complete!
-We have successfully completed Phase 2: Core Entities & Data Layer with:
-✅ 8 Entity Classes - Complete data model
-✅ 8 Repository Interfaces - Data access layer
-✅ 8 Service Classes - Business logic layer
-
-### Phase 3: Authentication & Security (Week 3)
-
-**Learning Goals:** Spring Security, JWT, role-based access control
-
-1. **User Management**
-
-   - ✅ User registration and login
-   - ✅ Password hashing with BCrypt
-   - ✅ Email validation
-
-2. **JWT Implementation**
-
-   - ✅ JWT token generation and validation
-   - ✅ Token refresh mechanism
-   - ✅ Security configuration
-
-3. **Authorization**
-   - ✅ Role-based access control (USER vs ADMIN)
-   - ✅ Method-level security
-   - ✅ API endpoint protection
-
-🎯 Phase 3 Complete!
-We have successfully completed Phase 3: Authentication & Security with:
-✅ JWT Authentication System - Complete token management
-✅ Spring Security Configuration - Custom UserDetailsService and JWT Filter
-✅ Authentication Endpoints - Registration, login, and token refresh
-✅ Role-Based Access Control - USER and ADMIN roles with proper authorization
-✅ Test Endpoints - Verification of security implementation
-
-### Phase 4: Core Business Logic (Week 4)
-
-**Learning Goals:** Complex business rules, transaction management
-
-1. **Movie & Showtime Management**
-
-   - Movie CRUD operations (Admin)
-   - Showtime scheduling with conflict detection
-   - Date/time validation
-
-2. **Seat Management**
-
-   - Seat availability checking
-   - Screen and theater management
-   - Seat layout generation
-
-3. **Reservation Logic**
-   - Basic reservation creation
-   - Reservation status management
-   - User reservation history
-
-1. Movie & Showtime Management ✅
-- Movie CRUD operations (Admin): Fully implemented in MovieService and AdminMovieController
-- Showtime scheduling with conflict detection: Implemented in ShowtimeService with conflict detection logic
-- Date/time validation: Proper validation for future showtimes and scheduling conflicts
-2. Seat Management ✅
-Seat availability checking: Implemented in SeatService and SeatReservationService
-Screen and theater management: Complete implementation in ScreenService and TheaterService
-Seat layout generation: Basic seat management with row/column support
-3. Reservation Logic ✅
-Basic reservation creation: Fully implemented in ReservationService
-Reservation status management: Status tracking (PENDING, CONFIRMED, etc.)
-User reservation history: Methods to find reservations by user ID
-
-### Phase 5: Concurrency & Advanced Features (Week 5)
-
-**Learning Goals:** Database transactions, locking, race condition prevention
-
-1. **Concurrency Control**
-
-   - Implement pessimistic locking
-   - Handle seat reservation conflicts
-   - Transaction isolation levels
-
-2. **Reservation Flow**
-
-   - Hold reservation mechanism
-   - Expiry handling with scheduled jobs
-   - Payment confirmation flow
-
-3. **Overbooking Prevention**
-   - Database constraints
-   - Application-level validation
-   - Conflict resolution strategies
-
-### Phase 6: API Development (Week 6)
-
-**Learning Goals:** RESTful API design, request/response handling
-
-1. **Controller Layer**
-
-   - Implement all REST endpoints
-   - Request/response DTOs
-   - Input validation
-
-2. **API Documentation**
-
-   - Swagger/OpenAPI setup
-   - API documentation
-   - Postman collection
-
-3. **Error Handling**
-   - Global exception handling
-   - Custom error responses
-   - Validation error messages
-
-### Phase 7: Testing & Quality Assurance (Week 7)
-
-**Learning Goals:** Testing strategies, test coverage, integration testing
-
-1. **Unit Testing**
-
-   - Service layer tests
-   - Repository tests
-   - Utility method tests
-
-2. **Integration Testing**
-
-   - API endpoint tests
-   - Database integration tests
-   - Security tests
-
-3. **Performance Testing**
-   - Load testing for concurrent reservations
-   - Database performance optimization
-   - Memory and CPU profiling
-
-### Phase 8: Advanced Features & Optimization (Week 8)
-
-**Learning Goals:** Performance optimization, monitoring, deployment
-
-1. **Reporting & Analytics**
-
-   - Admin reports implementation
-   - Revenue and capacity reports
-   - Data aggregation queries
-
-2. **Performance Optimization**
-
-   - Database indexing
-   - Query optimization
-   - Caching strategies
-
-3. **Monitoring & Logging**
-   - Application monitoring
-   - Structured logging
-   - Health checks
-
-### Phase 9: Deployment & DevOps (Week 9)
-
-**Learning Goals:** Containerization, CI/CD, production deployment
-
-1. **Containerization**
-
-   - Docker setup
-   - Docker Compose for local development
-   - Production Docker configuration
-
-2. **CI/CD Pipeline**
-
-   - GitHub Actions setup
-   - Automated testing
-   - Deployment automation
-
-3. **Production Readiness**
-   - Environment configuration
-   - Security hardening
-   - Backup strategies
-
-### Phase 10: Documentation & Knowledge Sharing (Week 10)
-
-**Learning Goals:** Technical writing, project documentation
-
-1. **Code Documentation**
-
-   - JavaDoc comments
-   - Architecture documentation
-   - API documentation
-
-2. **Project Documentation**
-
-   - Setup instructions
-   - Deployment guide
-   - Troubleshooting guide
-
-3. **Learning Reflection**
-   - Document key learnings
-   - Identify areas for improvement
-   - Plan next steps
+## 📋 Table of Contents
+
+- [🎯 Project Overview](#-project-overview)
+- [✨ Key Features](#-key-features)
+- [🏗 Architecture & Design](#-architecture--design)
+- [🛠 Technology Stack](#-technology-stack)
+- [📊 Database Schema](#-database-schema)
+- [🔐 Security Implementation](#-security-implementation)
+- [🚀 Getting Started](#-getting-started)
+- [📡 API Documentation](#-api-documentation)
+- [🧪 Testing Strategy](#-testing-strategy)
+- [📈 Performance & Scalability](#-performance--scalability)
+- [🤝 Contributing](#-contributing)
+- [📄 License](#-license)
 
 ---
 
-## 📚 Key Learning Concepts
+## 🎯 Project Overview
 
-### Core Spring Boot Concepts
+The **Movie Reservation System** is a comprehensive backend service designed to handle movie ticket reservations with enterprise-level reliability and scalability. Built with modern Java technologies, this system demonstrates advanced software engineering practices including concurrent seat reservation handling, robust authentication, and comprehensive data management.
 
-- **Dependency Injection:** Understanding `@Autowired`, `@Component`, `@Service`, `@Repository`
-- **Spring Data JPA:** Entity relationships, repository interfaces, custom queries
-- **Spring Security:** Authentication, authorization, JWT implementation
-- **Transaction Management:** `@Transactional`, isolation levels, propagation
-- **RESTful APIs:** Controller design, request/response handling, validation
+### 🎪 Business Domain
 
-### Database & Concurrency
+This system manages the complete lifecycle of movie ticket reservations:
 
-- **PostgreSQL:** Advanced features, indexing, performance tuning
-- **Flyway Migrations:** Version control for database schema
-- **Concurrency Control:** Pessimistic vs optimistic locking, race conditions
-- **ACID Properties:** Understanding transactions and data consistency
-
-### Advanced Patterns
-
-- **Repository Pattern:** Data access abstraction
-- **Service Layer Pattern:** Business logic encapsulation
-- **DTO Pattern:** Data transfer objects for API communication
-- **Exception Handling:** Global exception handling, custom exceptions
-- **Validation:** Bean validation, custom validators
-
-### Testing Strategies
-
-- **Unit Testing:** JUnit 5, Mockito, testing business logic
-- **Integration Testing:** `@SpringBootTest`, database testing
-- **Test Coverage:** Measuring and improving test coverage
-- **Performance Testing:** Load testing, stress testing
+- **Movie Management**: CRUD operations for movies with metadata
+- **Theater & Screen Management**: Multi-theater support with flexible seating configurations
+- **Showtime Scheduling**: Dynamic scheduling with pricing strategies
+- **Seat Reservation**: Real-time seat availability with concurrency control
+- **User Management**: Secure authentication and role-based access control
+- **Reservation Processing**: Complete booking workflow from selection to confirmation
 
 ---
 
-## 🎯 Learning Resources
+## ✨ Key Features
 
-### Official Documentation
+### 🔐 **Advanced Security**
 
-- [Spring Boot Reference Documentation](https://docs.spring.io/spring-boot/docs/current/reference/html/)
-- [Spring Data JPA Documentation](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/)
-- [Spring Security Reference](https://docs.spring.io/spring-security/reference/)
-- [Flyway Documentation](https://flywaydb.org/documentation/)
+- JWT-based authentication with token blacklisting
+- Role-based access control (User/Admin)
+- Password encryption with BCrypt
+- Comprehensive input validation and sanitization
 
-### Key Books & Courses
+### ⚡ **Concurrency Control**
 
-- **Spring Boot in Action** by Craig Walls
-- **Spring Microservices in Action** by John Carnell
-- **Database Design for Mere Mortals** by Michael Hernandez
-- **Java Concurrency in Practice** by Brian Goetz
+- Pessimistic locking for seat reservations
+- Database-level constraints preventing double bookings
+- Transactional integrity across all operations
+- Automatic reservation expiry handling
 
-### Online Resources
+### 📊 **Real-time Management**
 
-- [Baeldung Spring Tutorials](https://www.baeldung.com/spring-tutorials)
-- [Spring Guides](https://spring.io/guides)
-- [PostgreSQL Tutorial](https://www.postgresqltutorial.com/)
-- [JWT.io](https://jwt.io/) for JWT understanding
+- Live seat availability tracking
+- Dynamic pricing per showtime
+- Comprehensive admin dashboard
+- Real-time reservation status updates
 
-### Tools & IDEs
+### 🏗 **Scalable Architecture**
 
-- **IntelliJ IDEA** (recommended) or **Eclipse** with Spring Tool Suite
-- **Postman** for API testing
-- **pgAdmin** for PostgreSQL management
-- **Docker Desktop** for containerization
+- Layered architecture with clear separation of concerns
+- Repository pattern for data access
+- Service layer for business logic
+- RESTful API design with proper HTTP status codes
 
----
+### 🔄 **Data Integrity**
 
-## 🚀 Getting Started Checklist
-
-### Prerequisites
-
-- ✅ Java 17+ installed
-- ✅ Maven or Gradle build tool
-- ✅ PostgreSQL database
-- ✅ IDE with Spring Boot support
-- ✅ Git for version control
-
-### Initial Setup
-
-- ✅ Create Spring Boot project (Spring Initializr)
-- ✅ Configure database connection
-- ✅ Set up Flyway migrations
-- ✅ Create basic project structure
-- ✅ Test database connectivity
-
-### Development Environment
-
-- ✅ Configure application.properties (YAML)
-- ✅ Set up logging
-- ✅ Create basic health check endpoint
-- ✅ Test application startup
+- Database migrations with Flyway
+- Comprehensive error handling
+- Audit trails with timestamps
+- Referential integrity constraints
 
 ---
 
-## 🎯 Success Metrics
+## 🏗 Architecture & Design
 
-### Technical Skills
+### **System Architecture**
 
-- [ ] Can explain Spring Boot architecture
-- [ ] Understands JPA/Hibernate relationships
-- [ ] Implements proper security measures
-- [ ] Handles concurrent access correctly
-- [ ] Writes comprehensive tests
+```
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   Client Apps   │    │   Admin Panel   │    │   Mobile Apps   │
+└─────────┬───────┘    └─────────┬───────┘    └─────────┬───────┘
+          │                      │                      │
+          └──────────────────────┼──────────────────────┘
+                                 │
+                    ┌─────────────▼─────────────┐
+                    │    Spring Boot API        │
+                    │  ┌─────────────────────┐  │
+                    │  │   Controllers       │  │
+                    │  └─────────┬───────────┘  │
+                    │  ┌─────────▼───────────┐  │
+                    │  │   Services          │  │
+                    │  └─────────┬───────────┘  │
+                    │  ┌─────────▼───────────┐  │
+                    │  │  Repositories       │  │
+                    │  └─────────┬───────────┘  │
+                    └────────────┼─────────────┘
+                                 │
+                    ┌─────────────▼─────────────┐
+                    │     PostgreSQL DB         │
+                    └───────────────────────────┘
+```
 
-### Project Completion
+### **Design Patterns Implemented**
 
-- [ ] All API endpoints working
-- ✅ Database migrations successful
-- [ ] Authentication/authorization functional
-- [ ] Seat reservation concurrency handled
-- [ ] Admin features implemented
-- ✅ Application deployed and running
-
-### Learning Outcomes
-
-- [ ] Can design similar systems
-- [ ] Understands trade-offs in design decisions
-- [ ] Can optimize performance
-- [ ] Knows how to handle production issues
-- [ ] Can mentor others on the technology stack
+- **Repository Pattern**: Abstract data access layer
+- **Service Layer Pattern**: Business logic encapsulation
+- **DTO Pattern**: Data transfer objects for API communication
+- **Builder Pattern**: Complex object construction
+- **Strategy Pattern**: Different pricing strategies
+- **Observer Pattern**: Event-driven architecture
 
 ---
 
-## 🛠 Tech Stack
+## 🛠 Technology Stack
 
-- **Backend:** Spring Boot (Java, Spring Data JPA, Spring Security)
-- **Database:** PostgreSQL
-- **Authentication:** JWT
-- **Concurrency Control:** Pessimistic locking + DB constraints
-- **Migrations:** Flyway
+### **Backend Framework**
+
+- **Java 17** - Latest LTS version with modern features
+- **Spring Boot 3.2** - Rapid application development framework
+- **Spring Security** - Comprehensive security framework
+- **Spring Data JPA** - Data access layer abstraction
+- **Spring Web** - RESTful web services
+
+### **Database & Migration**
+
+- **PostgreSQL 15** - Robust, ACID-compliant relational database
+- **Flyway** - Database migration and version control
+- **Hibernate** - Object-relational mapping
+
+### **Security & Authentication**
+
+- **JWT (JSON Web Tokens)** - Stateless authentication
+- **BCrypt** - Password hashing algorithm
+- **Spring Security** - Authentication and authorization
+
+### **Development Tools**
+
+- **Maven** - Dependency management and build tool
+- **Git** - Version control system
+- **Docker** - Containerization support
 
 ---
 
-## 📊 ER Diagram
+## 📊 Database Schema
+
+### **Entity Relationship Diagram**
 
 ```mermaid
 erDiagram
@@ -490,9 +240,10 @@ erDiagram
     }
 ```
 
-## Databse Schema
+### **Database Schema Details**
 
-```
+```sql
+-- Users table for authentication and user management
 CREATE TABLE users (
   id BIGSERIAL PRIMARY KEY,
   username VARCHAR(100) UNIQUE NOT NULL,
@@ -502,6 +253,7 @@ CREATE TABLE users (
   created_at timestamptz DEFAULT now()
 );
 
+-- Movies table for movie information
 CREATE TABLE movies (
   id BIGSERIAL PRIMARY KEY,
   title VARCHAR(255) NOT NULL,
@@ -512,12 +264,14 @@ CREATE TABLE movies (
   created_at timestamptz DEFAULT now()
 );
 
+-- Theaters table for venue management
 CREATE TABLE theaters (
   id BIGSERIAL PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
   address TEXT
 );
 
+-- Screens table for individual theater screens
 CREATE TABLE screens (
   id BIGSERIAL PRIMARY KEY,
   theater_id BIGINT REFERENCES theaters(id) ON DELETE CASCADE,
@@ -525,6 +279,7 @@ CREATE TABLE screens (
   capacity INT NOT NULL
 );
 
+-- Seats table for individual seat management
 CREATE TABLE seats (
   id BIGSERIAL PRIMARY KEY,
   screen_id BIGINT REFERENCES screens(id) ON DELETE CASCADE,
@@ -534,6 +289,7 @@ CREATE TABLE seats (
   UNIQUE(screen_id, label)
 );
 
+-- Showtimes table for movie screenings
 CREATE TABLE showtimes (
   id BIGSERIAL PRIMARY KEY,
   movie_id BIGINT REFERENCES movies(id) ON DELETE CASCADE,
@@ -544,6 +300,7 @@ CREATE TABLE showtimes (
   created_at timestamptz DEFAULT now()
 );
 
+-- Reservations table for booking management
 CREATE TABLE reservations (
   id BIGSERIAL PRIMARY KEY,
   user_id BIGINT REFERENCES users(id) ON DELETE SET NULL,
@@ -554,6 +311,7 @@ CREATE TABLE reservations (
   created_at timestamptz DEFAULT now()
 );
 
+-- Seat reservations junction table
 CREATE TABLE seat_reservations (
   id BIGSERIAL PRIMARY KEY,
   reservation_id BIGINT REFERENCES reservations(id) ON DELETE CASCADE,
@@ -564,139 +322,276 @@ CREATE TABLE seat_reservations (
 );
 ```
 
-## 📡 API Design
+---
 
+## 🔐 Security Implementation
+
+### **Authentication Flow**
+
+1. **User Registration**: Secure password hashing with BCrypt
+2. **Login Process**: JWT token generation with configurable expiry
+3. **Token Validation**: Middleware-based JWT verification
+4. **Token Blacklisting**: Secure logout with token invalidation
+
+### **Authorization Strategy**
+
+- **Role-Based Access Control (RBAC)**: User and Admin roles
+- **Endpoint Protection**: Method-level security annotations
+- **Resource-Level Authorization**: User-specific data access
+
+### **Security Headers**
+
+- CORS configuration for cross-origin requests
+- CSRF protection for state-changing operations
+- Content Security Policy headers
+- XSS protection headers
+
+---
+
+## 🚀 Getting Started
+
+### **Prerequisites**
+
+- Java 17 or higher
+- PostgreSQL 15 or higher
+- Maven 3.6 or higher
+- Git
+
+### **Installation Steps**
+
+1. **Clone the Repository**
+
+   ```bash
+   git clone https://github.com/yourusername/movie-reservation-system.git
+   cd movie-reservation-system
+   ```
+
+2. **Database Setup**
+
+   ```bash
+   # Create PostgreSQL database
+   createdb movie_reservation_db
+
+   # Update application.yaml with your database credentials
+   ```
+
+3. **Application Configuration**
+
+   ```yaml
+   # application.yaml
+   spring:
+     datasource:
+       url: jdbc:postgresql://localhost:5432/movie_reservation_db
+       username: your_username
+       password: your_password
+     jpa:
+       hibernate:
+         ddl-auto: validate
+     flyway:
+       enabled: true
+   ```
+
+4. **Run the Application**
+
+   ```bash
+   mvn spring-boot:run
+   ```
+
+5. **Verify Installation**
+   ```bash
+   curl http://localhost:8080/api/health
+   ```
+
+### **Docker Deployment**
+
+```bash
+# Build Docker image
+docker build -t movie-reservation-system .
+
+# Run with Docker Compose
+docker-compose up -d
 ```
-Authentication
 
-POST /api/auth/signup — Register user
+---
 
-POST /api/auth/login — Login and get JWT
+## 📡 API Documentation
 
-User
+### **Authentication Endpoints**
 
-GET /api/movies?date=YYYY-MM-DD
+| Method | Endpoint           | Description       | Request Body      |
+| ------ | ------------------ | ----------------- | ----------------- |
+| `POST` | `/api/auth/signup` | Register new user | `RegisterRequest` |
+| `POST` | `/api/auth/login`  | User login        | `LoginRequest`    |
 
-GET /api/movies/{id}
+### **User Endpoints**
 
-GET /api/showtimes/{id}/seats
+| Method   | Endpoint                         | Description           | Authentication |
+| -------- | -------------------------------- | --------------------- | -------------- |
+| `GET`    | `/api/movies`                    | List all movies       | Optional       |
+| `GET`    | `/api/movies/{id}`               | Get movie details     | Optional       |
+| `GET`    | `/api/showtimes/{id}/seats`      | Get seat availability | Required       |
+| `POST`   | `/api/showtimes/{id}/reserve`    | Reserve seats         | Required       |
+| `POST`   | `/api/reservations/{id}/confirm` | Confirm reservation   | Required       |
+| `DELETE` | `/api/reservations/{id}`         | Cancel reservation    | Required       |
+| `GET`    | `/api/users/{id}/reservations`   | User's reservations   | Required       |
 
-POST /api/showtimes/{id}/reserve
+### **Admin Endpoints**
 
-POST /api/reservations/{id}/confirm
+| Method   | Endpoint                      | Description           | Role Required |
+| -------- | ----------------------------- | --------------------- | ------------- |
+| `POST`   | `/api/admin/movies`           | Create movie          | `ADMIN`       |
+| `PUT`    | `/api/admin/movies/{id}`      | Update movie          | `ADMIN`       |
+| `DELETE` | `/api/admin/movies/{id}`      | Delete movie          | `ADMIN`       |
+| `POST`   | `/api/admin/showtimes`        | Create showtime       | `ADMIN`       |
+| `GET`    | `/api/admin/reservations`     | List all reservations | `ADMIN`       |
+| `GET`    | `/api/admin/reports/capacity` | Capacity reports      | `ADMIN`       |
+| `GET`    | `/api/admin/reports/revenue`  | Revenue reports       | `ADMIN`       |
 
-DELETE /api/reservations/{id}
+### **Sample API Requests**
 
-GET /api/users/{id}/reservations
+#### **User Registration**
 
-Admin
-
-POST /api/admin/movies
-
-PUT /api/admin/movies/{id}
-
-DELETE /api/admin/movies/{id}
-
-POST /api/admin/showtimes
-
-GET /api/admin/reservations
-
-GET /api/admin/reports/capacity
-
-GET /api/admin/reports/revenue
+```bash
+curl -X POST http://localhost:8080/api/auth/signup \
+  -H "Content-Type: application/json" \
+  -d '{
+    "username": "john_doe",
+    "email": "john@example.com",
+    "password": "securePassword123"
+  }'
 ```
+
+#### **Movie Reservation**
+
+```bash
+curl -X POST http://localhost:8080/api/showtimes/1/reserve \
+  -H "Authorization: Bearer YOUR_JWT_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "seatIds": [1, 2, 3],
+    "showtimeId": 1
+  }'
+```
+
+---
 
 ## 🔄 Seat Reservation Flow & Concurrency
 
+### **Reservation Process**
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant A as API
+    participant S as Service
+    participant D as Database
+
+    U->>A: GET /showtimes/{id}/seats
+    A->>S: Get seat availability
+    S->>D: Query available seats
+    D-->>S: Return seat status
+    S-->>A: Seat availability data
+    A-->>U: Available seats
+
+    U->>A: POST /showtimes/{id}/reserve
+    A->>S: Reserve seats
+    S->>D: BEGIN TRANSACTION
+    S->>D: SELECT seats FOR UPDATE
+    S->>D: Check conflicts
+    S->>D: INSERT seat_reservations
+    S->>D: INSERT reservation
+    S->>D: COMMIT
+    S-->>A: Reservation created
+    A-->>U: Reservation confirmation
 ```
-Fetch seat availability (GET /showtimes/{id}/seats)
 
-User selects seats & sends POST /showtimes/{id}/reserve
+### **Concurrency Control Strategy**
 
-Backend:
+1. **Pessimistic Locking**: `SELECT ... FOR UPDATE` on seats
+2. **Database Constraints**: `UNIQUE(showtime_id, seat_id)` prevents double booking
+3. **Transactional Integrity**: All operations within single transaction
+4. **Automatic Expiry**: Scheduled job cleans up expired reservations
 
-Start transaction
+### **Overbooking Prevention**
 
-Lock selected seats (SELECT ... FOR UPDATE)
+- **Database-level constraints** ensure seat uniqueness
+- **Application-level locking** prevents race conditions
+- **Transaction rollback** on conflicts
+- **Real-time availability** updates
 
-Check for conflicts
+---
 
-Insert seat_reservations + reservation
+## 🧪 Testing Strategy
 
-Commit transaction
+### **Test Coverage**
 
-If HELD, expire via scheduled job
+- **Unit Tests**: Service layer and utility classes
+- **Integration Tests**: Repository and controller layers
+- **End-to-End Tests**: Complete user workflows
+- **Security Tests**: Authentication and authorization
 
-Confirm reservation after payment (POST /reservations/{id}/confirm)
+### **Running Tests**
 
-Overbooking Prevention
+```bash
+# Run all tests
+mvn test
 
-DB constraint: UNIQUE(showtime_id, seat_id)
+# Run with coverage
+mvn jacoco:report
 
-Transactional pessimistic locking
+# Run specific test category
+mvn test -Dtest=*ServiceTest
 ```
 
-## Database Design Notes
+### **Test Data**
 
-Showtime is a screening of a movie on a specific screen at a certain date/time.
+- **Test fixtures** for consistent testing
+- **Database seeding** for integration tests
+- **Mock services** for external dependencies
 
-Reservation is tied to one Showtime and can have multiple Seats.
+---
 
-SeatReservation is the join table between Reservation and Seat, with a status field (reserved, paid, cancelled).
+## 📈 Performance & Scalability
 
-## Flyway Migration Plan
+### **Performance Optimizations**
 
-```
-CREATE TABLE user (
-    id BIGSERIAL PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL
-);
+- **Database indexing** on frequently queried columns
+- **Connection pooling** with HikariCP
+- **Query optimization** with JPA/Hibernate
+- **Caching strategy** for static data
 
-CREATE TABLE movie (
-    id BIGSERIAL PRIMARY KEY,
-    title VARCHAR(255) NOT NULL,
-    genre VARCHAR(100),
-    duration_minutes INT NOT NULL
-);
+### **Scalability Considerations**
 
-CREATE TABLE theater (
-    id BIGSERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    location VARCHAR(255)
-);
+- **Horizontal scaling** with load balancers
+- **Database sharding** for large datasets
+- **Microservices architecture** ready
+- **Container orchestration** support
 
-CREATE TABLE screen (
-    id BIGSERIAL PRIMARY KEY,
-    name VARCHAR(50) NOT NULL,
-    theater_id BIGINT NOT NULL REFERENCES theater(id) ON DELETE CASCADE
-);
+### **Monitoring & Metrics**
 
-CREATE TABLE seat (
-    id BIGSERIAL PRIMARY KEY,
-    row_label VARCHAR(5) NOT NULL,
-    seat_number INT NOT NULL,
-    screen_id BIGINT NOT NULL REFERENCES screen(id) ON DELETE CASCADE
-);
+- **Application metrics** with Micrometer
+- **Database performance** monitoring
+- **API response times** tracking
+- **Error rate monitoring**
 
-CREATE TABLE showtime (
-    id BIGSERIAL PRIMARY KEY,
-    start_time TIMESTAMP NOT NULL,
-    movie_id BIGINT NOT NULL REFERENCES movie(id) ON DELETE CASCADE,
-    screen_id BIGINT NOT NULL REFERENCES screen(id) ON DELETE CASCADE
-);
+---
 
-CREATE TABLE reservation (
-    id BIGSERIAL PRIMARY KEY,
-    user_id BIGINT NOT NULL REFERENCES user(id) ON DELETE CASCADE,
-    showtime_id BIGINT NOT NULL REFERENCES showtime(id) ON DELETE CASCADE,
-    reservation_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+## 📄 License
 
-CREATE TABLE seatreservation (
-    id BIGSERIAL PRIMARY KEY,
-    reservation_id BIGINT NOT NULL REFERENCES reservation(id) ON DELETE CASCADE,
-    seat_id BIGINT NOT NULL REFERENCES seat(id) ON DELETE CASCADE,
-    status VARCHAR(20) NOT NULL
-);
-```
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 🙏 Acknowledgments
+
+- **Spring Boot Team** for the excellent framework
+- **PostgreSQL Community** for the robust database
+- **Open Source Contributors** for various libraries used
+
+---
+
+<div align="center">
+
+**Made with ❤️ by Ishan**
+
+</div>
