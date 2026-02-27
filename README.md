@@ -587,6 +587,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Spring Boot Team** for the excellent framework
 - **PostgreSQL Community** for the robust database
 - **Open Source Contributors** for various libraries used
+- [roadmap.sh](https://roadmap.sh/projects/movie-reservation-system) for giving this wonerful challenge
 
 ---
 
